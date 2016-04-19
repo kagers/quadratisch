@@ -1,0 +1,98 @@
+04.12.2016
+
+Animashunz
+
+Coordinate Systems
+
+    Current system has problems - Global Coordinate System
+        Everything is drawn on the same coordinate system
+	No independent parts
+	
+    Need a Relative Coordinate System
+        Each object has its own coordinate system
+
+    Relative CS
+        Once you are done describing the cs, draw it
+	Then, reset polygon ans transformation matrix
+   	Maintain a stack of transformation matrices
+	More like a cs/origin stack
+
+Drawing Pipeline
+    A. Transformations are applied to the current top of the stack
+    B. Origins can be pushed or popped as needed
+    C. Drawing goes as follows
+        1. Generate and add points to a point matrix
+	2. Multiply points by the top of the stack
+	3. Draw the image to a screen
+	4. Clear the point matrix
+
+
+04.13.2016
+
+. = origin 1
+* = origin 2
+
+Command     CS stack      Image    
+----------------------------------------
+			   _________
+push        I             |         |
+	    I 		  |    	    |
+	    		  |         |
+	    		  |_________|
+			  
+----------------------------------------
+                           _________
+translate   T*I		  |	    |
+	    I		  |  .	    |
+	    		  |         |
+    	    		  |_________|
+			  
+----------------------------------------
+                           _________
+box	    T*I		  |  _      |
+	    I		  | |.|     |
+	    		  | |_|	    |
+    	    		  |_________|
+
+----------------------------------------
+                           _________
+push	    T*I		  |  _	    |
+	    T*I		  | |.|     |
+	    I		  | |_|	    |
+    	    		  |_________|
+
+----------------------------------------
+                           _________
+translate   T*T*I	  |  _ *    |
+	    T*I		  | | |     |
+	    I		  | |_|	    |
+    	    		  |_________|
+
+----------------------------------------
+                           _________
+sphere      T*T*I	  |  _\*/   |
+	    T*I		  | | |     |
+	    I		  | |_|	    |
+    	    		  |_________|
+
+----------------------------------------
+                           _________
+pop         T*I 	  |  _\	/   |
+	    I		  | |.|     |
+	    		  | |_|	    |
+    	    		  |_________|
+
+----------------------------------------
+                           _________
+translate   T*T*I	  |  _\ /   |
+	    T*I		  | | |*    |
+	    I		  | |_|	    |
+    	    		  |_________|
+
+----------------------------------------
+                           _________
+box	    T*T*I	  |  _\ /__ |
+	    T*I		  | | |*|__||
+	    I		  | |_|	    |
+    	    		  |_________|
+

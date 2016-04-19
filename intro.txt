@@ -1,0 +1,53 @@
+02.03.2016
+
+Image File Formats
+      Compressed vs Uncompressed
+      		 Compressed
+		 Smaller
+		 png, jpg, gif
+		 
+		 Uncompressed
+		 No degradation
+		 Raw pixel information
+		 tiff, bmp, raw
+
+      Lossy vs Lossless
+		 Lossy
+		 Loses information
+		 Not all compressed are lossy
+		 jpg
+
+		 Lossless
+		 Retains all data
+		 png
+		 run-length encoding compression algorythm
+		 	    BBBBBRRRYYYY  -  12 bytes
+			    5B3R4Y  -  6 bytes
+
+      Raster vs Vector
+		 Raster
+		 Defined by a grid of pixels 
+		 Cannot be scaled well
+
+		 Vector
+		 Contains a list of shapes in the image
+		 Can be scaled easily
+		 
+      netpbm
+		uncompressed
+		lossless
+		large
+
+
+02.04.2016
+
+netpbm - ppm
+	header
+		P3
+		<XRES> <YRES>
+		<MAX COLOR VALUE>
+	pixels
+		R G B pixel values
+	all whitespace is equivalent (newline, space, tab, etc)
+	ctrl-c ctrl-c: emacs command to swithc between picture and text
+

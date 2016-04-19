@@ -1,0 +1,151 @@
+02.22.2016
+
+Using Matrices
+
+    [P1,P2,P3,P4,P5,P6]
+
+    while (i<points.length-1)
+        drawline(p[i],p[i+1])
+        i++
+
+    (however the shapes would be connected)
+    (to fix:)
+    (have different matrices for each shape)
+    (have a null point and skip over it) 
+    (have a vertex matrix)
+  **(have an edge matrix and go by two [P0,P1,P1,P2,P2,P0,P3,P4])**
+
+[x0 x1 x2 x3 x4]
+[y0 y1 y2 y3 y4]
+[z0 z1 z2 z3 z4]
+
+edges = new_matrix
+add_edge(edges, P0, P1)
+draw_edge(edges)
+
+[0 1 a][x]   [x+a]
+[0 1 0][y] = [y+a]
+[0 0 1][1]
+
+
+02.23.2016
+
+!!Matrix Math!!
+
+    Scalar Multiplication
+            [a b]   [Sa Sb]
+        S * [c d] = [Sc Sd]
+
+    Matrix Multiplication
+        Not commutative
+	columns M0 == rows M1
+	[a b c] * [1]   [1a+2b+3c]
+	     	  [2] = 
+		  [3]
+
+        1x3 * 3x1 = 1x1
+	AxB * BxC = AxC
+	
+    Multiplicative Identity Matrix
+        Always square
+	Diagonal 1s and 0s everywhere else
+	[1 0 0 0]   [a e]
+	[0 1 0 0] * [b f]
+	[0 0 1 0]   [c g]
+	[0 0 0 1]   [d h]
+
+	Edge matrices are 4xN so can always use above
+
+!!Transformations!!
+
+    Scaling
+	(x, y, z)           ==> (ax, by, cz)
+	         S(a, b, c)
+
+        [a 0 0 0][x]   [ax]
+	[0 b 0 0][y] = [by]
+	[0 0 c 0][z]   [cz]
+	[0 0 0 1][1]   [1 ]
+
+        scalar multiplication can be used for uniform scaling
+
+        translate to origin, scale, and translate back for same position 
+
+
+02.24.2016
+
+Transformation Matrices
+
+    Scaling
+
+    Transforming
+
+        [ a/x+1 0     0     0 ][x]   [a+x]
+	[ 0     b/y+1 0     0 ][y] = [b+y]
+	[ 0     0     c/z+1 0 ][z]   [c+z]
+	[ 0     0     0     1 ][1]   [ 1 ]
+
+	(Bad: division by zero, different matrix for each point)
+
+	[ 1 0 0 a ][x]   [a+x]
+	[ 0 1 0 b ][y] = [b+y]
+	[ 0 0 1 c ][z]   [c+z]
+	[ 0 0 0 1 ][1]   [ 1 ]
+
+	(Good: same matrix for each point)
+	(First time the 1 is needed)
+
+    Rotating
+
+	(x, y, z)               ==> (?, ?, ?)
+		 R(axis, theta)
+
+        rotating axis stays the same
+
+	Zamansky Rotation
+	    |     (x',y')
+	    |    / theta       x = rcos(phi)  
+	    |   /   _(x,y)     y = rsin(phi)  
+	    |  /  _/ phi
+	    | / _/             x' = rcos(phi+theta) = xcos(theta) - ysin(theta)
+	    |/_/_________      y' = rsin(phi+theta) = ycos(theta) + xsin(theta) 
+
+	    [ cos(theta) -sin(theta) 0 0 ][x]   [ xcos(theta)-ysin(theta) ]
+	    [ sin(theta) cos(theta)  0 0 ][y] = [ ycos(theta)+xsin(theta) ]
+	    [ 0          0           1 0 ][z]   [            z            ]
+	    [ 0          0           0 1 ][1]   [            1            ]
+
+
+02.25.2016
+
+Rotating
+
+    X Rotation
+        (x, y, z)     ==> (x, ycos(theta)-zsin(theta), ysin(theta)+zcos(theta))
+	         R(x, theta)
+
+	[ 1 0          0           0 ]
+	[ 0 cos(theta) -sin(theta) 0 ]
+	[ 0 sin(theta) cos(theta)  0 ]
+	[ 0 0          0           1 ]
+
+    Y Rotation
+	(x, y, z)     ==> (xcos(theta)-zsin(theta), y, xsin(theta)+zcos(theta))
+	         R(y, theta)
+		 
+	[ cos(theta) 0 -sin(theta) 0 ]
+	[ 0          1 0           0 ]
+	[ sin(theta) 0 cos(theta)  0 ]
+	[ 0          0 0           1 ]
+
+Applying Transformations
+
+    E0: edge
+    T:  translation
+    S:  scale
+    R:  rotation
+
+    E1 = T*E0 = translated
+    E2 = S*E1 = translated then scaled
+    E3 = R*E1 = translated then scaled then rotated
+    E3 = R*S*T*E0 (mat mult is associative) (this way is faster)

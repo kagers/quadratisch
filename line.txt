@@ -1,0 +1,139 @@
+02.05.2016
+
+Bresenham's Line Algorithm
+
+Test pixel to see if ii is on the line
+y = mx+b
+A = delta y
+B = -delta x
+C = bdeltax
+
+-B = xA+C
+f(x,y) = xA+yB+C = 0
+
+4 quadrants each have a diagonal -> 8 octants
+
+f(x,y)...
+
+==0 on the line
+>0 below the line
+<0 above the line
+
+test pixels around the last pixel, which f(x,y) has a smaller magnitude
+
+test x+0,5, y+0.5
+
+
+02.09.2016
+
+(x+1,y) and (x+1,y+1) are both viable options
+mp = (x+1,y+1/2)
+f(x+1,y+1/2)...
+==0 mp is on the line so do either one
+>0 mp is below the line so do the upper pixel
+<0 mp is above the line so do the lower pixel
+
+First Draft Algorithm
+    (x0,y0)->(x1,y1)
+
+    while (x0 <= x1)
+        plot(x0,y0)
+        d = f(x+1,y+1/2) //biggest efficiency concern
+        if (d>0)
+            y=y+1
+        x=x+1	  
+
+initial value of d
+d = f(x0+1,y0+1/2)
+d = A(x0+1) + B(y0+1/2) + C
+d = Ax0 + A + By0 + (1/2)B + C
+d = Ax0 + By0 + C + A + (1/2)B
+  Ax0 + By0 + C = f(x,y) = 0
+d = A + (1/2)B
+
+Second Draft Algorithm
+    d = A + (1/2)B //only saves us once
+
+    while (x0 <= x1)
+        plot(x0,y0)
+        if (d>0)
+            y=y+1
+        x=x+1	  
+	d = f(x+1,y+1/2)
+
+d>0
+    x = x+1
+    y = y+1
+    d = f(x+1,y+1/2)
+    d = Ax + A + By + B + C
+        Ax + By + C = f(x,y) = old value of d
+    d = d + A + B
+
+d<0
+    x = x+1
+    y = y+1
+    d = f(x+1,y)
+    d = A(x+1) + By + C
+        Ax + By + C = f(x,y) = old value of d
+    d = d + A
+
+Third Draft Algorithm
+    d = A + (1/2)B
+
+    while (x0 <= x1)
+        plot(x0,y0)
+        if (d>0)
+            y=y+1
+	    d+=B
+        x+=1	  
+	d+=A
+
+
+02.10.2016
+
+2d = D
+
+d  = A + (1/2)B
+2d = 2A + B
+D  = 2A + B
+
+d  = d + A
+2d = 2A + 2A
+D  = 2A + 2A
+
+d  = d + A + B
+2d = 2d + 2A + 2B
+D  = 2d + 2A + 2B
+
+Third S Draft Algorithm
+    d = 2A + B
+
+    while (x0 <= x1)
+        plot(x0,y0)
+        if (d>0)
+            y=y+1
+            d+=2B
+        x+=1	  
+        d+=2A
+
+Other Octants
+    II
+        1 < m < infinity, goes up more than right
+        possible pixels are (x,y+1) (x+1,y+1)
+	midpoint (x+1/2,y+1), f(x+1/2,y+1)
+	d = (1/2)A + B
+	d>0 right, draw the left one
+	d<0 left
+	
+	id f< d<0
+        d = d + A
+	else
+	d = d + A + B
+
+    V
+        Switch start and end points
+
+    VIII
+        -1 < m < -1/2
+	(x+1,y-1) (x+1,y)
+

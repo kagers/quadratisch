@@ -1,0 +1,86 @@
+03.07.2016
+
+Parametric Equations
+    x = f(t)
+    y = g(t)
+
+Circle
+    x = rcos(t) + center
+    y = rsin(t) + center
+
+
+03.08.2016
+
+Hermite curve (no septic curves)
+
+    Inputs:
+        Endpoints P0 P1
+	Rates of change at endpoints R0 R1 
+
+    h1(t) = 2t^3 - 3t^2 + 1
+    h2(t) = -2t^3 + 3t^2
+    h3(t) = t^3 - 2t^2 + t
+    h4(t) = t^3 - t^2
+
+    Cubic curve
+        f(t)  = at^3 + bt^2 + ct + d : Points
+	f'(t) = 3at^2 + bt + c       : Rates of change
+
+        When t=0 : f(t)  = d       : P0
+	     	   f'(t) = c       : R0 
+	When t=1 : f(t)  = a+b+c+d : P1
+	     	   f'(t) = 3a+2b+c : R1
+
+    [    d    ]   [ 0 0 0 1 ][a]
+    [ a+b+c+d ] = [ 1 1 1 1 ][b]
+    [    c    ]   [ 0 0 1 0 ][c]
+    [ 3a+2b+c ]   [ 3 2 1 0 ][d]
+
+
+03.09.2016
+
+     M*C = G
+M^-1*M*C = M^-1*G
+     I*C = M^-1*G
+       C = M^-1*G
+
+[ 2 -2  1  1 ][P0]   [a]
+[-3  3 -2 -1 ][P1] = [b]
+[ 0  0  1  0 ][R0]   [c]
+[ 1  0  0  0 ][R1]   [d]
+
+[ t^3 t^2 t^1 1 ][ 2 -2  1  1 ]   [ 2t^3-3t^2+1 ... stuff from above ] 
+      	         [-3  3 -2 -1 ] = 
+	         [ 0  0  1  0 ]   
+	         [ 1  0  0  0 ]  
+
+
+Bezier Curves
+    P0 P3
+    P1 P2
+
+    Points you need = 1 more than the degree 
+
+    Quadratic
+        Like 3 linear Bezier curves
+
+	     P1 
+	    _/\_  
+	  _/    \_
+        _/        \_
+       /  _  - - -  \_
+      /-               -
+     -                   -
+    - P0                   - P2
+
+        (see Wikipedia for hot fyre gifs)
+    
+    Linear
+        P(t) = (1-t)P0 + t(P1)
+
+    Quadratic
+        P(t) = M(t)
+	M0:  = P0P1 
+        M1:  = P1P2
+
+	M(t) = (1-t)M0 + t(M1)

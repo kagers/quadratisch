@@ -1,0 +1,48 @@
+03.21.2016
+
+3D Shapes
+
+box
+sphere
+torus
+
+box
+    width  x
+    height y
+    depth  z
+    point    
+    
+    z+ out of the screen
+    z- into the screen
+
+    12 edges
+
+sphere
+    rotate a circle about the x axis
+    xrot matrix * [rcost]
+    	 	  [rsint]
+		  [  1  ]
+		  [  1  ]
+
+    angles in the two matrices represent different things
+
+    x = rcost + cx
+    y = rsintcostheta - sintheta + cy
+    z = rsintsintheta + costheta + cz
+
+    theta is for rotation
+    t is for circle
+
+
+03.22.2016
+
+generating points on a sphere
+    for p: 0->1
+        for t: 0->1
+	    x = rcos(2pit) + cx
+	    y = rsin(2pit)cos(pip) + cy
+	    z = rsin(2pit)sin(pip) + cz
+
+torus
+    translate a circle and then rotate
+    r and R
