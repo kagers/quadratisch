@@ -61,3 +61,42 @@ Compilers
 	Creates a list of operations to perform
 	Creates a symbol (variables) table
 
+
+04.20.2016
+
+More Compilers
+
+    Semantic Analyzer
+
+        Knows what operations the tokens in syntax tree match
+	Knows the order to navigate the tree
+
+	Generates
+	    1. Symbol table
+	       list of symbols with associated information
+	       (type, function, etc.)
+	    2. List of operations in the order they should be performed
+
+	Symbol Table
+	    name   |   type
+	    main   |   int, f
+	    x      |   long
+	    printf |   void, f
+
+        Operation List
+	    + : 5,6
+	    = : x
+	    printf : "%b",x
+	    return : x
+
+    Optimizer
+
+        Not required
+	Can go through SA output and modify it to run faster
+	e.g.: remove unused variables
+
+    Code Generator
+
+        Knows the assembly/machine code that matches the
+	operation in the operation list
+	Generates the machine code for the program
