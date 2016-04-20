@@ -1,0 +1,62 @@
+04.19.2016
+
+Compilers
+
+    Source Code
+    |
+    V
+    Compiler
+        1. lexer
+	2. parser
+	3. semantic analyzer
+	4. optimizer
+	5. code generator
+    |
+    V
+    Machine Code
+
+    Lexer
+    
+        Performs lexical analysis
+	Knows all tokens in the language
+	Scans code and generates a list of tokens	
+
+	int main() {           |   int
+	    long x = 5+6;      |   IDENT main
+	    printf("%b",x);    |   (
+	    return 0;          |   )
+	}                      |   {
+	                       |   long
+			       |   IDENT x
+			       |   =
+			       |   5
+			       |   +
+			       |   6
+			       |   ...
+			       |
+
+	Removes whitespace, formatting, comments, etc.
+	Catches invalid identifiers like "& main()" instead of "int main()"
+
+    Parser
+    
+	Performs syntactic analysis
+        Knows the structure of the language
+	Creates a syntax tree from the token list
+		  	       |
+                           int main
+		     /         |        \
+		    =        printf    return
+		/       \     /  \       |
+	    long x      +    "%b" x      0
+       	              /   \
+		     5     6
+
+        Catches syntax errors with parentheses, colons, etc.
+	Scope errors, type errors are not caught
+	
+    Semantic Analyzer
+        Knows how to interpret the syntax tree
+	Creates a list of operations to perform
+	Creates a symbol (variables) table
+
