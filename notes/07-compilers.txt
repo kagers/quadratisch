@@ -56,6 +56,7 @@ Compilers
 	Scope errors, type errors are not caught
 	
     Semantic Analyzer
+    
         Knows how to interpret the syntax tree
 	Creates a list of operations to perform
 	Creates a symbol (variables) table
