@@ -13,18 +13,65 @@ Moving a ball
 
     save each frame, and then make into a gif
 
-new command: vary
+New commands
 
-    vary factor 0     4           0     1
-    	 	start end frame | start end value
+    vary <knob> <FO> <F!> <VO> <VI>
 
-    delay
+        vary factor 0     4           0     1
+    	    	    start end frame | start end value
 
-new command: frames
+        delay
 
-    set the number of frames
+    frames <N>
 
-new command: basename
+    	set the number of frames
 
-    set the start of the filename of the frames
+    basename <S>
 
+        set the start of the filename of the frames
+
+
+05.04.2016
+
+Pass 1
+    Check for animation commands
+        frames, basename, vary
+	
+    Check for basic animation command errors
+        if frames first line of mdl file and number of frames and vary
+	you can check if frame indices are in bounds
+
+    Set number of frames
+
+    Set basename
+        if basename is not present, use some default name and alert the user
+ 
+Pass 2
+    Calculate and store knob values
+    Create an array/list where each index maps to a frame
+    and contains a list of knob names and values for that frame
+ 
+    example:
+        vary k  0  10  0  1
+    	vary x  3   6   1  0 
+ 
+	frames
+    	0_ -> k: 0 -> x: 1
+	1_ -> k: .1 -> x: 1
+	2_ -> k: .2 -> x: 1
+    	3_ -> k: .3 -> x: 1
+    	4_ -> k: .4 -> x: .666
+   	5_ -> k: .5 -> x: .333
+    	6_ -> k: .6 -> x: 0 
+    	7_ -> k: .7 -> x: 0
+    	8_ -> k: .8 -> x: 0
+    	9_ -> k: .9 -> x: 0
+    	10_ -> k: 1 -> x: 0
+ 
+Pass 3
+    If no animation code was found, draw a single image 
+
+    If there is animation code, for each frame:
+        1. set all knob values in symbol table based on the list from pass 2
+	2. go through the drawing commands applying knobs as needed
+	3. save the image as basename + frame number
