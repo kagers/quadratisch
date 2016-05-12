@@ -100,3 +100,17 @@ More Compilers
         Knows the assembly/machine code that matches the
 	operation in the operation list
 	Generates the machine code for the program
+
+
+04.21.2016
+
+lex - patented lexer generator program
+flex - free
+
+yacc - yet another compiler compiler
+bison - free
+
+mdl - motion desctiption language
+
+mdl.l - lexer/tokens
+mdl.y - grammar
