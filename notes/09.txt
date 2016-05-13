@@ -1,0 +1,29 @@
+05.12.2016
+
+Colors
+
+Scanline Conversion
+    Filling in polygons by drawing a set of lines (horizontal or vertical)
+                          (x0,y0)  (x1,y1)
+           T ________________ B
+            /            ___/
+	   /         ___/
+	  /      ___/
+	 /   ___/
+      M	/___/  
+
+    1. Order points vertically
+    2. Start BB
+    3. (x0, y0) will always be on BM or MT
+       (x1, y1) will always be on BT
+
+    (xb,yb) --> (xb,yb)
+    (xb + delta 0, yb + 1) --> (xb + delta 1, yb + 1)
+
+    delta 1 = ?
+
+    m(x-xb) = y-yb
+    x-xb = y-yb(xt-xb / yt-yb)
+    x = xb + (xt-xb / yt-yb)
+
+    delta 0 = xm - xb / ym - yb
