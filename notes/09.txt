@@ -27,3 +27,60 @@ Scanline Conversion
     x = xb + (xt-xb / yt-yb)
 
     delta 0 = xm - xb / ym - yb
+
+
+05.13.2016
+
+Tweening
+
+Scanline Electric Boogaloo
+       T ___
+	 \  \___
+	  \     \___
+	   \        \_____ M
+	    \           _/
+	     \        _/
+	      \     _/
+     delta 0   \  _/   delta 1
+	        \/
+                B
+		
+    (t is top, m is middle, b is bottom)
+ 
+    Categories of triangles
+
+        1. There is a true middle
+           yb < ym < yt
+           x0 is on BT
+           x1 is on BM until y > ym, then x1 is on MT
+       
+        2. yb = ym          /\
+	   x0 is on BT     /  \
+	   x1 is on MT    /____\
+
+        3. yt = ym        ______
+	   x0 is on BT    \    /
+	   x1 is on BM     \  /
+                            \/
+
+
+05.18.2016
+
+Objects behind objects
+
+Z Buffering
+
+    Keep track of z values in a separate array (z buffer)
+
+    When plotting a pixel,
+    check if its z value is greater than the current z buffer value for it
+
+    Calculate z values for each pixel
+
+    Initialize z buffer with smallest possible value/integer
+
+    z is always a double
+
+    plot(x,y,screen,color) --> plot(x,y,z,screen,color,zbuffer)
+    draw_line
+    scanline_convert
