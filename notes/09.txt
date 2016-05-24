@@ -84,3 +84,65 @@ Z Buffering
     plot(x,y,screen,color) --> plot(x,y,z,screen,color,zbuffer)
     draw_line
     scanline_convert
+
+
+05.23.2016
+
+Matching real lighting
+
+2 distinct properties
+    1. Reflective properties of the object
+    2. Properties of the light source - color and intensity
+
+Lighting equation
+
+    We need to determine a color value for each polygon
+
+    For grayscale images we can calculate the color once per polygon
+    and use that value for red, green, and blue
+
+    For color images, we need to calculate color values separately
+
+    I (illumination)
+
+    I = Iambient + Idiffuse + Ispecular
+    
+Two kinds of light sources
+
+    Ambient light hits all objects with the same color and intensity
+
+    Point light sources come from a specific location, and do not hit evenly
+
+    Ambient light
+        Combination of the color of the ambient light and how much is reflected
+
+    Diffuse reflection
+    	Takes light from a single source and reflects it evenly
+	in all directions
+    
+    Specular reflection
+    	Reflects point sources at a specific vector
+
+
+05.24.2016
+
+Reflective Properties
+
+    % of light reflected back
+
+    Constants of reflection (one for each R G and B)
+        
+        Constant of diffuse, specular, ambient
+
+        Ks + Kd + Ka = 1
+
+Quality of Light
+
+    Ambient
+        Represented as a color value
+
+    Point Source
+        Represented as a color value and a point
+    
+
+    
