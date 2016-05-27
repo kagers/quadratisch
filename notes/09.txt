@@ -145,4 +145,106 @@ Quality of Light
         Represented as a color value and a point
     
 
+05.26.2016
+
+Ambient Light
+
+    Ca - ambient light color
+    Ka - ambient reflection constant
+
+    Iambient = Ca * Ka
+
+Diffuse Reflection
+
+     L        N
+      \       |       /
+       \theta |      /
+        \     |     /
+	 \    |    /
+	  \   |   /
+	   \  |  /
+	    \ | /
+         ____\|/____
+
+    shiny - smooth
+
+    calculate vector from surface to source
+
+    Cp - color of the point light source
+    Kd - diffuse reflection constant
+
+    L * N = (||L||)(||N||)costheta
+
+    we must normalize N and L into unit vector
+
+    Lhat = L/||L||
+
+    Idiffuse = Cp Kd costheta = Cp Kd Lhat * Nhat
+
+Specular Reflection
+
+    Cp - color of the point light source
+    Ks - specular reflection constant
     
+    Ispecular = Cp Ks cosalpha
+
+
+05.27.2016
+
+Specular Reflection
+
+                  S
+     L        N -----  R
+      \       |       /
+       \theta |theta / alpha
+        \     |     /     _ V
+	 \    |P   /    _/
+	  \   |   /   _/
+	   \  |  /  _/
+	    \ | / _/
+         ____\|/_/__
+
+    vector P - projection of Lhat and Nhat
+
+    Nhat(costheta)
+    Nhat(Lhat.Nhat)
+
+    R = P + S
+    R = P + P - L
+
+    R = 2P - L
+    R = 2(Nhat(Lhat.Nhat))-Lhat
+
+    cosalpha = R.V
+    cosalpha = 2[Nhat(Lhat.Nhat)-Lhat].V
+
+    sometimes cosalpha is raised to a power
+    higher powers makes it die off quickly
+
+    put a 0 for a negative value
+
+Shading Models
+
+    Flat Shading
+        calculate I once per polygon
+
+    Garaud Shading
+        Calculate I for each pixel
+	Generate I for each vertex (vertex normal)
+	Interpolate I for each pixel
+
+        Vertex Normal
+	    Combination of all the surface normals of every
+	    polygon that shares that vertex
+             ____________
+            |\         _/|  X = NA + NB + NC
+	    | \  A   _/  | 
+  	    |  \   _/    |  Bigger regions have bigger magnitudes
+	    | B \_/      |
+	    |  _/X   C   |
+	    |_/__________|
+
+    Phong Shading
+        Use vertex normals
+	Interpolate normal for each pixel
+	Recalculate I for each pixel
