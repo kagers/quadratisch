@@ -1,2 +1,1 @@
-# steffi-notes
-graf-ics notes
+# Computer Graphics
