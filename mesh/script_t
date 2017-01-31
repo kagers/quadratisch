@@ -1,0 +1,101 @@
+box
+400 200 0 50 25 100
+torus
+100 100 10 20
+torus
+400 850 10 20
+ident
+xrotate
+-60
+apply
+sphere
+50 150 20
+sphere
+50 175 20
+sphere
+50 200 20
+sphere
+50 225 20
+sphere
+50 250 20
+sphere
+50 275 20
+sphere
+50 300 20
+sphere
+50 325 20
+sphere
+50 350 20
+sphere
+70 325 20
+sphere
+90 300 20
+sphere
+110 275 20
+sphere
+130 250 20
+sphere
+150 275 20
+sphere
+170 300 20
+sphere
+190 325 20
+sphere
+210 350 20
+sphere
+210 325 20
+sphere
+210 300 20
+sphere
+210 275 20
+sphere
+210 250 20
+sphere
+210 225 20
+sphere
+210 200 20
+sphere
+210 175 20
+sphere
+210 150 20
+sphere
+290 150 20
+sphere
+290 175 20
+sphere
+290 200 20
+sphere
+290 225 20
+sphere
+290 250 20
+sphere
+290 275 20
+sphere
+290 300 20
+sphere
+290 325 20
+sphere
+290 350 20
+sphere
+310 250 20
+sphere
+330 270 20
+sphere
+350 290 20
+sphere
+370 310 20
+sphere
+390 330 20
+sphere
+410 350 20
+sphere
+330 230 20
+sphere
+350 210 20
+sphere
+370 190 20
+sphere
+390 170 20
+sphere
+410 150 20
+display

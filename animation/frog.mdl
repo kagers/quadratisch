@@ -1,0 +1,89 @@
+frames 30
+basename frog
+
+//torso
+ambient 0 255 0
+push
+move 250 350 0
+rotate z 90
+torus 0 0 0 10 70 
+pop
+
+//head
+push
+move 250 420 0
+scale 1.5 1.5 1.5 bigenator
+sphere 0 0 0 30
+pop
+
+//left upperarm
+push
+move 210 350 0
+rotate z 25
+torus 0 0 0 10 30 
+pop
+
+//right upperarm
+push
+move 290 350 0
+rotate z -25
+torus 0 0 0 10 30 
+pop
+
+//left forearm
+push
+move 160 350 0
+rotate z -25
+torus 0 0 0 10 30 
+pop
+
+//right forearm
+push
+move 340 350 0
+rotate z 25
+torus 0 0 0 10 30 
+pop
+
+//right thigh
+push
+move 265 230 0
+rotate z -70
+torus 0 0 0 10 40 
+pop
+
+//right calf
+push
+move 275 160 0
+rotate z -90
+torus 0 0 0 10 40 
+pop
+
+//wheel
+ambient 255 255 255
+push
+move 250 120 0
+rotate z 90
+rotate x -55
+rotate y -360 spinny
+torus 0 0 0 15 90
+pop
+
+//left thigh
+ambient 0 255 0
+push
+move 235 230 0
+rotate z 70
+torus 0 0 0 10 40 
+pop
+
+//left calf
+push
+move 225 160 0
+rotate z 90
+torus 0 0 0 10 40 
+pop
+
+//vary
+vary spinny 0 29 0 1
+vary bigenator 0 14 0 1
+vary bigenator 15 29 1 0

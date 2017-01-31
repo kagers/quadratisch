@@ -1,0 +1,50 @@
+#
+push
+sphere
+250 280 100
+#
+pop 
+push
+translate
+0 300 0
+xrotate
+90
+torus
+215 280 25 5
+#
+pop 
+push
+translate
+0 300 0
+xrotate
+90
+torus
+285 280 25 5
+#
+pop
+push
+box
+175 235 0 20 120 20
+#
+pop
+push
+box
+205 235 0 20 120 20
+#
+pop
+push
+box
+235 235 0 20 120 20
+#
+pop
+push
+box
+265 235 0 20 120 20
+#
+pop
+push
+box
+295 235 0 20 120 20
+#
+display
+quit

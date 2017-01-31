@@ -1,0 +1,12 @@
+constants 0.2 0.2 0.2 0.4 0.4 0.4 0.4 0.4 0.4
+light 100 100 100 0 227 216
+shading flat
+frames 100
+basename hi
+push
+move 200 50 0
+scale 5 5 5 bigenator
+rotate y 720 spinny
+mesh arraytest
+vary spinny 0 99 0 1
+vary bigenator 0 99 0 1
